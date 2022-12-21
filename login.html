@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>login </title>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Regi.html">Registration</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="Dashbord.html">Dashbord</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div id="login">
+            <form id="frm">
+                <h3>Login</h3>
+                <div>
+                    <label for="email">Enter a Email-ID</label>
+                    <input type="text" value="" name="email" id="email"  required/>
+                <b><span class="formerror"></span></b>
+                </div>
+                <div>
+                    <label for="password">Enter a Passord</label>
+                    <input type="password" name="password" id="password" />
+                <b><span class="formerror"></span></b>
+                </div>
+                <div class="forgotten">
+                <a href="">Forgotten password</a>
+                </div>
+                
+            </form>
+            <input type="submit" onclick="Login()" value="Login" />
+            <!-- <a href="Dashbord.html">
+                </a> -->
+        </div>
+    </div>
+    <div class="container">
+        <table>
+            <thead>
+                <tr id="theadP">
+
+                </tr>
+            </thead>
+            <tbody>
+                    <tr id="tbodyP">
+
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
