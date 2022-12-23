@@ -26,7 +26,7 @@ li a:hover{
 }
 .image{
     margin: auto;
-    width: 100%;
+    width: 50%;
  }
  *{
     margin: 0;
@@ -136,7 +136,13 @@ input[type="submit"]:hover{
     color: red;
 }
 
-
+.show{
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
 
 /* ........................... table css .......................... */
 table, td, th {  
@@ -152,4 +158,8 @@ table {
 
 th, td {
     padding: 15px;
+}
+.btn1{
+    margin: 5px;
+    padding: 2px 5px;
 }

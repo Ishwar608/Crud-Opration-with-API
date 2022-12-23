@@ -1,5 +1,5 @@
-let myArray = "";
-
+let myArray = [];
+let ediItem = -1;
 dashbord = () =>{
     let tkn = localStorage.getItem("token");
     // let bn = "bearer";
@@ -17,29 +17,89 @@ dashbord = () =>{
         display(y);
     })
 
-
+document.getElementById("regi").style.display = "none";
 }
-
 display = (myData) =>{
 
-
+    myArray = myData;
+    let keyVal = [];
     // console.log(myData);
 
     for (const key in myData[0]) {
-        if (key != "jwtToken") {
-            document.getElementById('theadP').innerHTML += `<th>${key}</th>`
-        }
+        keyVal.push(key);
+    }
+    keyVal.push("Action")
+    for (const iterator of keyVal) {
+        
+        document.getElementById('theadP').innerHTML += `<th>${iterator}</th>`
     }
 
 
-    document.getElementById('tbodyP').innerHTML = myData.map((value)=>{
+    document.getElementById('tbodyP').innerHTML = myData.map((value,index)=>{
         let text = '';
         for (const iterator in value) {
              text += `<td>${value[iterator]}</td>`
         }
-        return `<tr>${text}</tr>`
+        return `<tr>${text}<td><a href="Dashbord.html"><button class="btn1" onclick="dltData(${index})">Delete</button></a><button class="btn1" onclick=editData(${index})>Edit</button></td></tr>`
     }).join("");
 
     
+    
 }
-    dashbord();
+
+dltData = (index) =>{
+    let tkn = localStorage.getItem("token");
+ 
+    let id = myArray[index].id;
+    fetch("http://localhost:4000/accounts/" + id, {
+            method: 'DELETE',
+            headers: {
+
+                "Authorization" : "bearer " + tkn
+            }
+        })
+    }
+    
+    editData = (index) =>{
+
+
+        ediItem = index;
+
+        document.getElementById("title").value = myArray[index].title;
+        document.getElementById("firstName").value = myArray[index].firstName;
+        document.getElementById("lastName").value = myArray[index].lastName;
+        document.getElementById("email").value = myArray[index].email;
+
+
+        document.getElementById("regi").style.display = "block";
+
+
+}
+
+updateData = () =>{
+    let upData = {
+        title : document.getElementById("title").value,
+        firstName : document.getElementById("firstName").value,
+        lastName:document.getElementById("lastName").value,
+        emai:document.getElementById("email").value
+    }
+    console.log(upData);
+
+    let tkn = localStorage.getItem("token");
+
+    let id = myArray[ediItem].id;
+    fetch("http://localhost:4000/accounts/" + id, {
+            method: 'PUT',
+            headers: {
+                "Authorization" : "bearer " + tkn,
+                 'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(upData)    
+        })
+    
+}
+
+dashbord();
+
+
+    

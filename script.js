@@ -19,7 +19,7 @@ class PostData {
 
                 localStorage.setItem("token",y.jwtToken)
                 console.log(y);
-                // display(y);
+                display(y);
             })
 
     }
@@ -38,6 +38,53 @@ Login = () =>{
 
     let logData = new PostData("authenticate",myLoginData);
     logData.getData();
+
+}
+
+signUp = () =>{
+ 
+    let myLoginData = {}
+
+    for (const iterator of frm) {
+        myLoginData[iterator.name]= iterator.value;
+    }
+    // console.log(myLoginData);
+
+    let logData = new PostData("register",myLoginData);
+    logData.getData();
+
+}
+
+
+
+
+
+
+
+// ----------------------------- Display Data -----------------------
+
+let myData = [];
+let mykey = [];
+
+display = (myJson) => {
+    myData = myJson;
+
+    document.getElementById('theadP').innerHTML = "";
+    document.getElementById('tbodyP').innerHTML = "";
+    for (const key in myData) {
+        if (key != "jwtToken") {
+            // console.log(iterator);
+            document.getElementById('theadP').innerHTML += `<th>${key}</th>`
+        }
+    }
+
+    for (const key in myData) {
+
+        if (key != "jwtToken") {
+            // console.log(key);
+            document.getElementById('tbodyP').innerHTML += `<td>${myData[key]}</td>`
+        }
+    }
 
 }
 
