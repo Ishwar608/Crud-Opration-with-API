@@ -28,7 +28,9 @@ display = (myData) =>{
     for (const key in myData[0]) {
         keyVal.push(key);
     }
-    keyVal.push("Action")
+    if(myData.message != "Unauthorized"){
+        keyVal.push("Action")
+    }
     for (const iterator of keyVal) {
         
         document.getElementById('theadP').innerHTML += `<th>${iterator}</th>`
