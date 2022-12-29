@@ -42,7 +42,7 @@ display = (myData) =>{
         for (const iterator in value) {
              text += `<td>${value[iterator]}</td>`
         }
-        return `<tr>${text}<td><a href="Dashbord.html"><button class="btn1" onclick="dltData(${index})">Delete</button></a><button class="btn1" onclick=editData(${index})>Edit</button></td></tr>`
+        return `<tr id="${value.id}">${text}<td><a href="Dashbord.html"><button class="btn1" onclick="dltData(${index})">Delete</button></a><button class="btn1" onclick=editData(${index})>Edit</button></td></tr>`
     }).join("");
 
     
@@ -72,10 +72,10 @@ dltData = (index) =>{
         document.getElementById("lastName").value = myArray[index].lastName;
         document.getElementById("email").value = myArray[index].email;
 
-
+        
         document.getElementById("regi").style.display = "block";
-
-
+        // console.log(myData);
+        
 }
 
 updateData = () =>{
@@ -83,7 +83,7 @@ updateData = () =>{
         title : document.getElementById("title").value,
         firstName : document.getElementById("firstName").value,
         lastName:document.getElementById("lastName").value,
-        emai:document.getElementById("email").value
+        email:document.getElementById("email").value
     }
     console.log(upData);
 
@@ -98,7 +98,18 @@ updateData = () =>{
             },
             body: JSON.stringify(upData)    
         })
-    
+
+        let myData = document.getElementById(myArray[ediItem].id);
+
+        let myt = myData.getElementsByTagName("td");
+
+        myt[1].innerHTML = upData["title"];
+        myt[2].innerHTML = upData["firstName"];
+        myt[3].innerHTML = upData["lastName"];
+        myt[4].innerHTML = upData["email"];
+
+        document.getElementById("regi").style.display = "none";
+
 }
 
 dashbord();
