@@ -85,7 +85,6 @@ updateData = () =>{
         lastName:document.getElementById("lastName").value,
         email:document.getElementById("email").value
     }
-    console.log(upData);
 
     let tkn = localStorage.getItem("token");
 
